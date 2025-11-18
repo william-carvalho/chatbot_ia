@@ -1,0 +1,9 @@
+langchain>=0.3.0
+langchain-openai>=0.2.0
+langsmith>=0.1.0
+python-dotenv>=1.0.0
+pytest>=8.0.0
+
+# Hoje a integração oficial com OpenAI no LangChain é feita pelo pacote
+# `langchain-openai`.
+# Fonte: PyPI
