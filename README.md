@@ -1,86 +1,87 @@
-Chatbot Python com LangChain + OpenAI GPT-4
+🤖 Chatbot Python com LangChain + OpenAI (GPT-4 / GPT-4o)
 
-Um chatbot de linha de comando especializado em responder perguntas sobre programação em Python, desenvolvido utilizando:
+Um chatbot de linha de comando especializado em responder perguntas sobre programação em Python, desenvolvido com foco em:
 
-LangChain → Orquestração e pipeline conversacional
+LangChain → Orquestração, prompts e pipeline conversacional
 
 OpenAI GPT-4 / GPT-4o / GPT-4o-mini → LLM para respostas
 
-LangSmith (opcional) → Observabilidade, tracing e debugging de prompts
+LangSmith (opcional) → Observabilidade, tracing e depuração
 
-Clean Code + Testes + Estrutura modular
+Clean Code + Estrutura modular + Testes automatizados
 
-Ideal como base para:
+Ideal para:
 
-Chatbots educativos
+Chatbots educacionais
 
-Sistemas internos de ajuda
+Ferramentas internas de suporte
 
-Provas de conceito com arquiteturas LLM
+Estudos e POCs com arquiteturas baseadas em LLM
+
+Projetos que exigem rastreabilidade e boas práticas
 
 📦 1. Requisitos
-✔ Softwares necessários
-Item	Versão Requerida
-Python	3.10+
+Item	Versão
+Python	3.14
 pip	Atualizado
 Git	Opcional
 Conta na OpenAI	Obrigatória
 Conta no LangSmith	Opcional
 🔐 2. Criando sua conta e API Key da OpenAI
-👉 Passo 1 — Criar sua conta
+👉 Passo 1 — Criar uma conta
 
-Acesse:
-https://platform.openai.com
+Acesse: https://platform.openai.com
 
-Clique em Sign Up e siga o cadastro.
+Clique em Sign Up e finalize o cadastro.
 
 👉 Passo 2 — Gerar uma API Key
 
-Entre em https://platform.openai.com/settings/organization/api-keys
+Acesse:
+https://platform.openai.com/settings/organization/api-keys
 
 Clique em Create new secret key
-
 Nomeie como quiser (ex.: chatbot-python)
+Copie a chave — ela não será exibida novamente.
 
-Copie a chave (não é exibida novamente!)
+❗ Nunca coloque sua chave real no GitHub.
 
-Exemplo de chave (NUNCA coloque isso real no GitHub):
+Exemplo fictício:
 
-sk-9nJH3hdjasd-EXEMPLO-123456
+sk-EXEMPLO-123456789
 
-⚠ Atenção
+⚠ Boas práticas
 
-Nunca compartilhe sua API Key.
+Nunca compartilhe sua API Key
 
-Nunca suba .env para o GitHub.
+Nunca envie .env para o repositório
 
-Use .gitignore adequadamente.
+Utilize .gitignore corretamente
 
-📊 3. (Opcional) Criando conta e API Key no LangSmith
+📊 3. (Opcional) Configurando LangSmith
 
-LangSmith fornece:
+O LangSmith fornece:
 
-Tracing completo de chains
-
-Análise de conversas
+Tracing completo das chains
 
 Métricas de custo e latência
 
+Histórico de conversas
+
 Debug de prompts
 
-👉 Passo 1 — Criar conta
+👉 Criar conta
 
 https://smith.langchain.com/
 
-👉 Passo 2 — Criar API Key
+👉 Criar API Key
 
-Acesse: Settings → API Keys
+Settings → API Keys → Create API Key
 
-Clique em Create API Key
+Adicionar ao .env:
 
-Copie a chave
-
-Configure no .env
+LANGCHAIN_TRACING_V2=true
+LANGCHAIN_API_KEY=sua_key
+LANGCHAIN_PROJECT=python-chatbot
 
 📁 4. Estrutura do Projeto
 chatbot-python-llm/
@@ -100,7 +101,7 @@ chatbot-python-llm/
 └── README.md
 
 ⚙️ 5. Instalação e Configuração
-🧩 5.1 Clonar o projeto
+🧩 5.1 Clonar o repositório
 git clone https://github.com/<seu-usuario>/<seu-repo>.git
 cd chatbot-python-llm
 
@@ -124,18 +125,18 @@ Copie o modelo:
 cp .env.example .env
 
 
-Edite com suas chaves:
+Edite:
 
-OPENAI_API_KEY=coloque_sua_key_aqui
+OPENAI_API_KEY=sua_key
 OPENAI_MODEL=gpt-4o-mini
 
-# Opcional: LangSmith
+# opcional
 LANGCHAIN_TRACING_V2=true
-LANGCHAIN_API_KEY=sua_chave_langsmith
+LANGCHAIN_API_KEY=sua_key_langsmith
 LANGCHAIN_PROJECT=python-chatbot
 
 
-❗ O arquivo .env NUNCA deve ser commitado.
+❗ O .env nunca deve ser commitado.
 
 ▶️ 6. Executando o Chatbot
 Windows
@@ -144,64 +145,41 @@ python -m src.main
 Linux / macOS
 python3 -m src.main
 
-🧪 Exemplo de uso
+💬 Exemplo de uso
 
 Você digita:
 
 Como criar uma lista em Python?
 
 
-Chatbot responde:
+O chatbot responde:
 
-Para criar uma lista em Python, use colchetes:
+Para criar uma lista em Python, utilize colchetes:
 
-```python
 frutas = ["maçã", "banana", "uva"]
 print(frutas)
 
+Listas são mutáveis e permitem métodos como append(), remove(), etc.
 
-Listas são mutáveis e permitem operações como append(), remove(), etc.
+🧪 7. Rodando Testes
 
+Antes, configure o PYTHONPATH.
 
----
-
-# 🧪 **7. Rodando Testes**
-
-Antes, garanta que o `src` está no `PYTHONPATH`:
-
-### Windows
-
-```powershell
+Windows
 $env:PYTHONPATH = (Resolve-Path .\src).Path
 pytest -q
 
-Linux/macOS
+Linux / macOS
 export PYTHONPATH=$(pwd)/src
 pytest -q
 
-🛡️ 8. Boas Práticas Adotadas
+🛡️ 8. Boas Práticas Implementadas
 
-✔ Arquitetura limpa
+✔ Arquitetura limpa (Clean Code)
 ✔ Classes separadas por responsabilidade
 ✔ Histórico de conversas estruturado
 ✔ LangChain + OpenAI via langchain-openai
-✔ Testes com LLM Fake (rápidos e determinísticos)
-✔ .env seguro
-✔ Tipagem forte com Python
-✔ Suporte opcional a LangSmith para observabilidade
-
-📈 9. Possíveis Extensões Futuras
-
-Interface Web com FastAPI
-
-API REST para chatbot
-
-Cache de respostas
-
-Memória persistente em banco
-
-Logs estruturados (Elastic / Datadog)
-
-Modo streaming da OpenAI
-
-Modo multimodal (imagens + texto)
+✔ Testes com LLM Fake (rápido e determinístico)
+✔ Variáveis sensíveis isoladas em .env
+✔ Tipagem forte (mypy-ready)
+✔ Suporte ao LangSmith para observabilidade
